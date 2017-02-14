@@ -19,6 +19,8 @@ The InfVerif tool reports the following types of errors/warnings:
 
 -   **Issues that make an INF non-universal.** (1300-1309)
 
+-   **Issues with dependencies on other INFs.  These issues also make an INF non-universal.** (1310-1319)
+
 -   **Warnings** (2000-2999): These issues are always reported as warnings.
 
 ## <span id="in_this_section"></span>In this section
