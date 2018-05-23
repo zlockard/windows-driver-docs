@@ -76,20 +76,6 @@ DriverVer=10/03/2008,7.0.0.4
 [FabrikamVendor.NTx86.6.1]
 %FabrikamCardDeviceName%=FabrikamVendor32_61_Install,SCFILTER\CID_51FF0800
 
-[DefaultInstall]
-CopyFiles=x86_CopyFiles
-AddReg=AddRegDefault
-
-[DefaultInstall.ntamd64]
-CopyFiles=amd64_CopyFiles
-CopyFiles=wow64_CopyFiles
-AddReg=AddRegWOW64
-AddReg=AddRegDefault
-
-[DefaultInstall.NTx86]
-CopyFiles=x86_CopyFiles
-AddReg=AddRegDefault
-
 [SourceDisksFiles]
 Fabrikamcm64.dll=1
 Fabrikamcm.dll=1
@@ -103,6 +89,11 @@ CopyFiles=wow64_CopyFiles
 AddReg=AddRegWOW64
 AddReg=AddRegDefault
 
+[FabrikamVendor32_Install.NT]
+CopyFiles=x86_CopyFiles
+AddReg=AddRegDefault
+
+
 [FabrikamVendor64_61_Install.NT]
 CopyFiles=amd64_CopyFiles
 CopyFiles=wow64_CopyFiles
@@ -111,9 +102,18 @@ AddReg=AddRegDefault
 Include=umpass.inf
 Needs=UmPass
 
-[FabrikamVendor32_Install.NT]
-CopyFiles=x86_CopyFiles
-AddReg=AddRegDefault
+[FabrikamVendor64_61_Install.NT.Services]
+Include=umpass.inf
+Needs=UmPass.Services
+
+[FabrikamVendor64_61_Install.NT.HW]
+Include=umpass.inf
+Needs=UmPass.HW
+
+[FabrikamVendor64_61_Install.NT.Interfaces]
+Include=umpass.inf
+Needs=UmPass.Interfaces
+
 
 [FabrikamVendor32_61_Install.NT]
 CopyFiles=x86_CopyFiles
@@ -121,37 +121,13 @@ AddReg=AddRegDefault
 Include=umpass.inf
 Needs=UmPass
 
-[FabrikamVendor64_61_Install.NT.Services]
-Include=umpass.inf
-Needs=UmPass.Services
-
 [FabrikamVendor32_61_Install.NT.Services]
 Include=umpass.inf
 Needs=UmPass.Services
 
-
-[FabrikamVendor64_61_Install.NT.HW]
-Include=umpass.inf
-Needs=UmPass.HW
-
-[FabrikamVendor64_61_Install.NT.CoInstallers]
-Include=umpass.inf
-Needs=UmPass.CoInstallers
-
-
-[FabrikamVendor64_61_Install.NT.Interfaces]
-Include=umpass.inf
-Needs=UmPass.Interfaces
-
-
 [FabrikamVendor32_61_Install.NT.HW]
 Include=umpass.inf
 Needs=UmPass.HW
-
-[FabrikamVendor32_61_Install.NT.CoInstallers]
-Include=umpass.inf
-Needs=UmPass.CoInstallers
-
 
 [FabrikamVendor32_61_Install.NT.Interfaces]
 Include=umpass.inf
@@ -182,9 +158,9 @@ HKLM, %SmartCardName%,"Smart Card Key Storage Provider",0x00000000,"Microsoft Sm
 HKLM, %SmartCardName%,"80000001",0x00000000,%SmartCardCardModule%
 
 [DestinationDirs]
-amd64_CopyFiles=10,system32
-x86_CopyFiles=10,system32
-wow64_CopyFiles=10,syswow64
+amd64_CopyFiles=11
+x86_CopyFiles=11
+wow64_CopyFiles=16425
 
 
 ; =================== Generic ==================================
@@ -201,7 +177,6 @@ SmartCardCardModule="Fabrikamcm.dll"
 The following are required for this type of INF file:
 
 -   The hardware ID that is specified by the %FabrikamCardDeviceName% string must either be the ATR historical bytes of the device or the decoded value of the device’s smart card framework identifier. For more information about this identifier, see the “Windows Smart Card Framework Card Identifier” section in Smart Card Discovery Process.
--   The DefaultInstall section is mandatory in INF files for smart card minidriver packages.
 
  
 
